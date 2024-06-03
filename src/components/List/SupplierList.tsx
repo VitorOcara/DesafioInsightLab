@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Table, Modal, Button, Form, Space, Popconfirm, Input } from "antd";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 import { Fornecedor } from "../../Interfaces/Supplier";
 import "./styles.css";
 
@@ -50,13 +46,6 @@ const SupplierList: React.FC = () => {
   const [fornecedores, setFornecedores] =
     useState<Fornecedor[]>(initialfornecedores);
 
-  const handleEdit = (supplier: Fornecedor) => {
-    setSelectedSupplier(supplier);
-    setEditMode(true);
-    setVisible(true);
-    form.setFieldsValue(supplier);
-  };
-
   const handleViewDetails = (supplier: Fornecedor) => {
     setSelectedSupplier(supplier);
     setVisible(true);
@@ -68,15 +57,14 @@ const SupplierList: React.FC = () => {
 
   const atualizar = () => {
     form.validateFields().then((values) => {
-      if (editMode) {
-        setFornecedores((prevState) =>
-          prevState.map((supplier) =>
-            supplier.cnpj === selectedSupplier?.cnpj
-              ? { ...values, cnpj: supplier.cnpj }
-              : supplier
-          )
-        );
-      }
+      setFornecedores((prevState) =>
+        prevState.map((supplier) =>
+          supplier.cnpj === selectedSupplier?.cnpj
+            ? { ...values, cnpj: supplier.cnpj }
+            : supplier
+        )
+      );
+
       setVisible(false);
     });
   };
@@ -131,14 +119,19 @@ const SupplierList: React.FC = () => {
 
   return (
     <div>
-      <Table className="CustomTable" columns={columns} dataSource={fornecedores} rowKey="cnpj" />
+      <Table
+        className="CustomTable"
+        columns={columns}
+        dataSource={fornecedores}
+        rowKey="cnpj"
+      />
       <Modal
         className="CustomModal"
         title={"Detalhes do Fornecedor"}
         open={visible}
         onCancel={() => setVisible(false)}
         onOk={atualizar}
-        okText={editMode ? "Salvar" : "Ok"}
+        okText={"Concluir"}
         cancelText="Cancelar"
       >
         {selectedSupplier && (
