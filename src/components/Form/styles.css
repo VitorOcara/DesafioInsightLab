@@ -1,0 +1,46 @@
+.customForm {
+  margin-top: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 16px; 
+}
+
+.itemForm {
+  flex: 0 1 calc(50%); 
+}
+
+.itemForm .ant-form-item-label > label {
+  color: white;
+  margin: 0 10px;
+  text-align: start;
+}
+
+.itemForm .ant-input {
+  width: 100%; 
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.ant-form-item {
+  margin-bottom: 16px; 
+}
+
+.submitButtonContainer {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center; 
+  margin-top: 16px; 
+}
+
+@media screen and (min-width: 768px) {
+  .customForm{
+    margin: 5%;
+  }
+  .itemForm {
+    flex: 0 1 calc(50% - 26px); 
+  }
+
+
+}

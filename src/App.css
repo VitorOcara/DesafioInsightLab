@@ -1,0 +1,36 @@
+#root {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.CustomLayout {
+  background-color: #3a3a3a;
+  width: 100%;
+  height: 100%;
+
+  justify-content: space-between;
+}
+
+.CustomHeader {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.CustomMenu {
+  justify-content: flex-end;
+  display: flex;
+}
+
+.CustomMenu > li {
+  width: 100px;
+}
+
+.CustomContent {
+  overflow: hidden;
+  gap: 62px;
+  height: 100%;
+}
+
