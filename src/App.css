@@ -6,17 +6,35 @@
 }
 
 .CustomLayout {
-  background-color: #3a3a3a;
+  display: flex;
+  background-color: #1b2735;
   width: 100%;
   height: 100%;
-
   justify-content: space-between;
+  scrollbar-width: none;
 }
 
 .CustomHeader {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   flex-direction: row;
+}
+.IconHome {
+  margin: 0 20px;
+  color: white;
+  font-size: large;
+}
+.CustomHeaderDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.CustomHeaderDiv > h1 {
+  line-height: 70%;
+  color: #ffffff;
+  font-size: 1.5rem;
 }
 
 .CustomMenu {
@@ -27,10 +45,38 @@
 .CustomMenu > li {
   width: 100px;
 }
-
-.CustomContent {
-  overflow: hidden;
-  gap: 62px;
-  height: 100%;
+.ant-menu-title-content {
+  font-weight: bolder;
 }
 
+.CustomMenu > span {
+  font-weight: bold;
+}
+
+.CustomContent {
+  display: flex;
+  padding: 5% 0;
+  background-image: url("./assets/lua-backgrond.png");
+  background-repeat: no-repeat;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.CustomFooter {
+  background-color: #001529;
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 800px) {
+  .CustomContent {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .CustomContent {
+    justify-content: flex-start;
+  }
+}

@@ -3,9 +3,9 @@ import type { FormProps } from "antd";
 import { Button, Form, Input } from "antd";
 import "./styles.css";
 // import { StyledLabelForm } from "./styles";
-import { Supplier } from "../../Interfaces/Supplier";
+import { Fornecedor } from "../../Interfaces/Supplier";
 
-type FieldType = Supplier;
+type FieldType = Fornecedor;
 
 const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
   console.log("Success:", values);
@@ -15,7 +15,7 @@ const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
-const initialValues: Supplier = {
+const initialValues: Fornecedor = {
   nome: '',
   email: '',
   telefone: '',
@@ -56,22 +56,21 @@ const renderInterfaceFields = (obj: any, parentKey = ''): JSX.Element[]=> {
 
 
 const SupplierForm: React.FC = () => (
+  
   <Form
     className="customForm"
     name="basic"
-    labelCol={{ span: 8 }}
-    wrapperCol={{ span: 16 }}
     initialValues={{ remember: true }}
     onFinish={onFinish}
     onFinishFailed={onFinishFailed}
     autoComplete="off"
   >
-
+    <h1 className="h1Form">Cadastre aqui um novo fornecedor</h1>
     {renderInterfaceFields(initialValues)}
 
     <Form.Item  className="submitButtonContainer" >
       <Button type="primary" htmlType="submit">
-        Submit
+        Cadastrar
       </Button>
     </Form.Item>
   </Form>

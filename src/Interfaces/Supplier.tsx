@@ -1,5 +1,5 @@
 
-export interface Supplier {
+export interface Fornecedor {
 
   nome: string;
   email: string;
