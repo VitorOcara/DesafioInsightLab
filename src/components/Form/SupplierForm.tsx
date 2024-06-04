@@ -4,76 +4,125 @@ import { Button, Form, Input } from "antd";
 import "./styles.css";
 // import { StyledLabelForm } from "./styles";
 import { Fornecedor } from "../../Interfaces/Supplier";
+import { useDispatch } from "react-redux";
+import { addFornecedor } from "../../redux/fornecedoresSlice";
 
-type FieldType = Fornecedor;
+const SupplierForm: React.FC = () => {
+  const dispatch = useDispatch();
 
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
-const initialValues: Fornecedor = {
-  nome: '',
-  email: '',
-  telefone: '',
-  cnpj: '',
-  endereco: {
-    rua: '',
-    numero: 0,
-    bairro: '',
-    cidade: '',
-    estado: '',
-    cep: '',
-  },
-};
-
-const renderInterfaceFields = (obj: any, parentKey = ''): JSX.Element[]=> {
-  return Object.keys(obj).map((key) => {
-
-    const inputName = parentKey ? `${parentKey}.${key}` : key;
-    const displayName = key.charAt(0).toUpperCase() + key.slice(1);
-
-    if(typeof obj[key]==='object' && !Array.isArray(obj[key])){
-      return renderInterfaceFields(obj[key], inputName);
+  const onFinish: FormProps<Fornecedor>["onFinish"] = (values) => {
+    try {
+      dispatch(addFornecedor(values));
+      console.log("Success:", values);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    return(
-      <Form.Item 
-        className="itemForm"
-        key={displayName}
-        label={displayName}
-        name={displayName}
+  const onFinishFailed: FormProps<Fornecedor>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  return (
+    <Form
+      className="customForm"
+      name="basic"
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      autoComplete="off"
+    >
+      <h1 className="h1Form">Cadastre aqui um novo fornecedor</h1>
+      <Form.Item
         rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="Nome"
+        name="nome"
       >
-        <Input placeholder={displayName} />
+        <Input />
       </Form.Item>
-    )
-  }).flat();
-}
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="Email"
+        name="email"
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="Telefone"
+        name="telefone"
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="CNPJ"
+        name="cnpj"
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="Rua"
+        name={["endereco", "rua"]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="Número"
+        name={["endereco", "numero"]}
+      >
+        <Input type="number" />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="Bairro"
+        name={["endereco", "bairro"]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="Cidade"
+        name={["endereco", "cidade"]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="Estado"
+        name={["endereco", "estado"]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        rules={[{ required: true, message: `Este campo é OBRIGATÓRIO!` }]}
+        className="itemForm"
+        label="CEP"
+        name={["endereco", "cep"]}
+      >
+        <Input />
+      </Form.Item>
 
-
-const SupplierForm: React.FC = () => (
-  
-  <Form
-    className="customForm"
-    name="basic"
-    initialValues={{ remember: true }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="off"
-  >
-    <h1 className="h1Form">Cadastre aqui um novo fornecedor</h1>
-    {renderInterfaceFields(initialValues)}
-
-    <Form.Item  className="submitButtonContainer" >
-      <Button type="primary" htmlType="submit">
-        Cadastrar
-      </Button>
-    </Form.Item>
-  </Form>
-);
+      <Form.Item className="submitButtonContainer">
+        <Button type="primary" htmlType="submit">
+          Cadastrar
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+};
 
 export default SupplierForm;

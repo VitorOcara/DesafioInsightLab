@@ -3,48 +3,21 @@ import { Table, Modal, Button, Form, Space, Popconfirm, Input } from "antd";
 import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 import { Fornecedor } from "../../Interfaces/Supplier";
 import "./styles.css";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import {
+  deleteFornecedor,
+  updateFornecedor,
+} from "../../redux/fornecedoresSlice";
 
 const SupplierList: React.FC = () => {
+  const dispatch = useDispatch();
+  const fornecedores = useSelector((state: RootState) => state.fornecedores);
   const [visible, setVisible] = useState(false);
-  const [editMode, setEditMode] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState<Fornecedor | null>(
     null
   );
   const [form] = Form.useForm();
-
-  const initialfornecedores: Fornecedor[] = [
-    {
-      nome: "Fornecedor 1",
-      email: "fornecedor1@email.com",
-      telefone: "1234567890",
-      cnpj: "12345678000100",
-      endereco: {
-        rua: "Rua 1",
-        numero: 100,
-        bairro: "ABC",
-        cidade: "DEF",
-        estado: "GHIJ",
-        cep: "12345000",
-      },
-    },
-    {
-      nome: "Fornecedor 2",
-      email: "fornecedor2@email.com",
-      telefone: "0987654321",
-      cnpj: "98765432000100",
-      endereco: {
-        rua: "Rua 2",
-        numero: 200,
-        bairro: "ABC",
-        cidade: "DEF",
-        estado: "GHIJ",
-        cep: "23456000",
-      },
-    },
-    // Adicione mais fornecedores conforme necessário
-  ];
-  const [fornecedores, setFornecedores] =
-    useState<Fornecedor[]>(initialfornecedores);
 
   const handleViewDetails = (supplier: Fornecedor) => {
     setSelectedSupplier(supplier);
@@ -52,18 +25,12 @@ const SupplierList: React.FC = () => {
   };
 
   const handleDelete = (cnpj: string) => {
-    setFornecedores(fornecedores.filter((supplier) => supplier.cnpj !== cnpj));
+    dispatch(deleteFornecedor(cnpj));
   };
 
   const atualizar = () => {
     form.validateFields().then((values) => {
-      setFornecedores((prevState) =>
-        prevState.map((supplier) =>
-          supplier.cnpj === selectedSupplier?.cnpj
-            ? { ...values, cnpj: supplier.cnpj }
-            : supplier
-        )
-      );
+      dispatch(updateFornecedor({ ...selectedSupplier, ...values }));
 
       setVisible(false);
     });
@@ -93,7 +60,7 @@ const SupplierList: React.FC = () => {
     {
       title: "Ações",
       key: "actions",
-      render: (text: string, record: Fornecedor) => (
+      render: (record: Fornecedor) => (
         <Space>
           <Button
             icon={<SearchOutlined />}
@@ -120,6 +87,7 @@ const SupplierList: React.FC = () => {
   return (
     <div>
       <Table
+        pagination={false}
         className="CustomTable"
         columns={columns}
         dataSource={fornecedores}
@@ -135,7 +103,12 @@ const SupplierList: React.FC = () => {
         cancelText="Cancelar"
       >
         {selectedSupplier && (
-          <Form form={form} layout="vertical" initialValues={selectedSupplier}>
+          <Form
+            className="CustomListForm"
+            form={form}
+            layout="vertical"
+            initialValues={selectedSupplier}
+          >
             <Form.Item label="Nome" name="nome">
               <Input />
             </Form.Item>
