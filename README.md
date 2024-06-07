@@ -1,30 +1,76 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este template fornece uma configuração mínima para fazer o React funcionar no Vite com HMR e algumas regras do ESLint.
 
-Currently, two official plugins are available:
+Atualmente, dois plugins oficiais estão disponíveis:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Uso do Redux no projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+instalação:
+- npm install @reduxjs/toolkit react-redux
 
-- Configure the top-level `parserOptions` property like this:
-
+arquivo store.ts
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+import { configureStore } from "@reduxjs/toolkit";
+import fornecedoresSlice from "./fornecedoresSlice";
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+const store = configureStore({
+  reducer: {
+    fornecedores: fornecedoresSlice,
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export default store;
+```
+arquivo Slice.ts
+
+```ts
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Fornecedor } from "../Interfaces/Supplier";
+
+const initialState: Fornecedor[] = [
+  {
+    nome: "Fornecedor 1",
+    email: "fornecedor1@email.com",
+    telefone: "1234567890",
+    cnpj: "12345678000100",
+    endereco: {
+      rua: "Rua 1",
+      numero: 100,
+      bairro: "ABC",
+      cidade: "DEF",
+      estado: "GHIJ",
+      cep: "12345000",
+    },
+  },
+];
+
+const fornecedoresSlice = createSlice({
+  name: "fornecedores",
+  initialState,
+  reducers: {
+    addFornecedor: (state, action: PayloadAction<Fornecedor>) => {
+      state.push(action.payload);
+    },
+    updateFornecedor: (state, action: PayloadAction<Fornecedor>) => {
+      const index = state.findIndex((f) => f.cnpj === action.payload.cnpj);
+      if (index >= 0) {
+        state[index] = action.payload;
+      }
+    },
+    deleteFornecedor: (state, action: PayloadAction<string>) => {
+       return state.filter( f=> f.cnpj != action.payload);
+      },
+  },
+});
+
+export const { addFornecedor, updateFornecedor, deleteFornecedor } = fornecedoresSlice.actions;
+
+export default fornecedoresSlice.reducer;
+```
