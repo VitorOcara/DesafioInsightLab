@@ -128,3 +128,16 @@
     font-size: 11px;
   }
 }
+
+@media (max-width: 500px) {
+  .ant-table-cell[data-column-key="cnpj"] {
+    display: none;
+  }
+}
+
+@media (max-width: 362px) {
+  .ant-table-cell[data-column-key="cnpj"],
+  .ant-table-cell[data-column-key="telefone"] {
+    display: none;
+  }
+}

@@ -51,11 +51,13 @@ const SupplierList: React.FC = () => {
       title: "Telefone",
       dataIndex: "telefone",
       key: "telefone",
+      responsive: ["md"],
     },
     {
       title: "CNPJ",
       dataIndex: "cnpj",
       key: "cnpj",
+      responsive: ["lg"],
     },
     {
       title: "Ações",

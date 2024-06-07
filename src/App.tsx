@@ -48,7 +48,11 @@ function App() {
           )}
         </Content>
       </Layout>
-      <Footer className="CustomFooter" />
+      <Footer className="CustomFooter">
+        <div className="FooterContent">
+          <p>&copy; 2024 Fornecedores.Insight. Todos os direitos reservados.</p>
+        </div>
+      </Footer>
     </>
   );
 }

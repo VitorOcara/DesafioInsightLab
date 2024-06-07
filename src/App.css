@@ -64,11 +64,25 @@
   justify-content: flex-end;
 }
 
+
 .CustomFooter {
   background-color: #001529;
-  opacity: 0.5;
+  opacity: 0.8;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
 }
 
+.FooterContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.FooterContent p {
+  margin: 0;
+  font-size: 14px;
+}
 @media screen and (max-width: 800px) {
   .CustomContent {
     justify-content: center;
@@ -79,6 +93,76 @@
 
 @media screen and (max-width: 575px) {
   .CustomContent {
-    justify-content: flex-start;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .CustomHeaderDiv > h1 {
+    margin-right: 20px;
+  }
+  .CustomMenu > li {
+    width: 80px;
+  }
+  .ant-menu-title-content {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .CustomHeaderDiv > h1 {
+    margin-right: 15px;
+  }
+  .IconHome {
+    font-size: small;
+    margin: 0 10px;
+  }
+  .ant-menu-title-content {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .CustomHeader {
+    align-items: center;
+  }
+  .CustomHeaderDiv > h1 {
+    margin-right: 10px;
+  }
+  .CustomMenu {
+    justify-content: center;
+    width: 100%;
+  }
+  .ant-menu-title-content {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .CustomHeader {
+    align-items: center;
+  }
+  .CustomMenu {
+    flex-direction: column;
+    align-items: center;
+  }
+  .CustomMenu > li {
+    min-width: 60%;
+    max-width: 100%;
+  }
+  .ant-menu-title-content {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .FooterContent p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .FooterContent p {
+    font-size: 11px;
   }
 }
