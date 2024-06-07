@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Modal, Button, Form, Space, Popconfirm, Input } from "antd";
+import { Table, Modal, Button, Form, Space, Popconfirm, Input, Breakpoint } from "antd";
 import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 import { Fornecedor } from "../../Interfaces/Supplier";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,13 +51,13 @@ const SupplierList: React.FC = () => {
       title: "Telefone",
       dataIndex: "telefone",
       key: "telefone",
-      responsive: ["md"],
+      responsive: ["md"] as Breakpoint[],
     },
     {
       title: "CNPJ",
       dataIndex: "cnpj",
       key: "cnpj",
-      responsive: ["lg"],
+      responsive: ["lg"] as Breakpoint[],
     },
     {
       title: "Ações",
