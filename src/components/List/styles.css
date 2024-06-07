@@ -1,0 +1,130 @@
+.CustomDiv {
+  min-height: 75vh;
+  padding: 20px;
+}
+.CustomDiv > h1 {
+  color: white;
+  font-size: 30px;
+}
+.CustomTable .ant-table {
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #00152960;
+  padding: 20px;
+}
+
+.CustomTable .ant-table-tbody > tr:hover > td {
+  background-color: #001529ad !important;
+}
+
+.CustomTable .ant-table-thead > tr > th {
+  color: white;
+  font-weight: bold;
+  background-color: #001529;
+  border-radius: 20px;
+  border-start-start-radius: 20px;
+  border: 2px solid #001529;
+}
+
+.CustomTable .ant-table-tbody > tr > td {
+  color: white;
+  font-weight: bold;
+  background-color: #00152960;
+}
+.CustomTable .ant-table-cell {
+  border-radius: 20px;
+  border-bottom: 3px solid #00152960;
+}
+
+:where(.css-dev-only-do-not-override-j9bb5n).ant-table-wrapper
+  .ant-table-container
+  table
+  > thead
+  > tr:first-child
+  > *:first-child {
+  border-start-start-radius: 20px;
+}
+:where(.css-dev-only-do-not-override-j9bb5n).ant-table-wrapper
+  .ant-table-container
+  table
+  > thead
+  > tr:first-child
+  > *:last-child {
+  border-start-end-radius: 20px;
+}
+
+.CustomTable .ant-table-tbody > tr > td:first-child,
+.CustomTable .ant-table-thead > tr > th:first-child {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.CustomTable .ant-table-tbody > tr > td:last-child,
+.CustomTable .ant-table-thead > tr > th:last-child {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.CustomModal .ant-modal-content {
+  border-radius: 20px;
+}
+
+@media (max-width: 1200px) {
+  .CustomDiv > h1 {
+    font-size: 28px;
+  }
+
+  .CustomTable .ant-table {
+    padding: 15px;
+  }
+
+  .CustomTable .ant-table-thead > tr > th,
+  .CustomTable .ant-table-tbody > tr > td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 992px) {
+  .CustomDiv > h1 {
+    font-size: 26px;
+  }
+
+  .CustomTable .ant-table {
+    padding: 10px;
+  }
+
+  .CustomTable .ant-table-thead > tr > th,
+  .CustomTable .ant-table-tbody > tr > td {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .CustomDiv > h1 {
+    font-size: 24px;
+  }
+
+  .CustomTable .ant-table {
+    padding: 5px;
+  }
+
+  .CustomTable .ant-table-thead > tr > th,
+  .CustomTable .ant-table-tbody > tr > td {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .CustomDiv > h1 {
+    font-size: 22px;
+  }
+
+  .CustomTable .ant-table {
+    padding: 0;
+  }
+
+  .CustomTable .ant-table-thead > tr > th,
+  .CustomTable .ant-table-tbody > tr > td {
+    font-size: 11px;
+  }
+}

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Table, Modal, Button, Form, Space, Popconfirm, Input } from "antd";
 import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 import { Fornecedor } from "../../Interfaces/Supplier";
-import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import {
   deleteFornecedor,
   updateFornecedor,
 } from "../../redux/fornecedoresSlice";
+import "./styles.css";
 
 const SupplierList: React.FC = () => {
   const dispatch = useDispatch();
@@ -65,9 +65,7 @@ const SupplierList: React.FC = () => {
           <Button
             icon={<SearchOutlined />}
             onClick={() => handleViewDetails(record)}
-          >
-            Ver detalhes
-          </Button>
+          ></Button>
 
           <Popconfirm
             title="Tem certeza que deseja excluir este fornecedor?"
@@ -75,9 +73,7 @@ const SupplierList: React.FC = () => {
             okText="Sim"
             cancelText="Não"
           >
-            <Button icon={<DeleteOutlined />} danger>
-              Excluir
-            </Button>
+            <Button icon={<DeleteOutlined />} danger></Button>
           </Popconfirm>
         </Space>
       ),
@@ -85,7 +81,8 @@ const SupplierList: React.FC = () => {
   ];
 
   return (
-    <div>
+    <div className="CustomDiv">
+      <h1>Lista de Fornecedores Cadastrados</h1>
       <Table
         pagination={false}
         className="CustomTable"

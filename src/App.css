@@ -20,6 +20,7 @@
   align-items: center;
   flex-direction: row;
 }
+
 .IconHome {
   margin: 0 20px;
   color: white;
@@ -35,6 +36,7 @@
   line-height: 70%;
   color: #ffffff;
   font-size: 1.5rem;
+  margin-right: 30px;
 }
 
 .CustomMenu {
